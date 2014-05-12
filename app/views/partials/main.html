@@ -6,14 +6,14 @@
     <p class="lead">
         Log in to manage your expenses or register a new account for starting using the application.
     </p>
-    <p><a class="btn btn-lg btn-success" href="#/login">Login!</a></p>
+    <p><a class="btn btn-lg btn-success" href="/login">Login!</a></p>
 </div>
 
 <div class="row" ng-show="currentUser">
     <button ng-click="tableParams.sorting({})" class="btn btn-default">Clear sorting</button>
     <a class="btn btn-default" ng-mousedown="csv.generate()" ng-href="{{ csv.link() }}" download="expenses.csv">Export Page to CSV</a>
     <a class="btn btn-default" href="/reports/weekly">Weekly Report</i></a>
-    <a class="btn btn-success pull-right" href="#/expense/create">New</i></a>
+    <a class="btn btn-success pull-right" href="/expense/create">New</i></a>
     <div>&nbsp;</div>
 
     <div loading-container="tableParams.settings().$loading">

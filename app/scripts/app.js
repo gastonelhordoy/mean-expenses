@@ -66,7 +66,6 @@ angular.module('projectGastonElhordoyApp', [
             });
 
         $locationProvider.html5Mode(true);
-        $locationProvider.hashPrefix('#');
 
         // Intercept 401s and redirect you to login
         $httpProvider.interceptors.push(['$q', '$location', function($q, $location) {
