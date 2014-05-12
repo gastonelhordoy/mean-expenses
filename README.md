@@ -14,26 +14,25 @@ For executing this application you will need to have the following software inst
 - [Grunt](http://gruntjs.com/getting-started#installing-the-cli)
 - [Bower](http://bower.io/#installing-bower)
 
-After installing them, please run the following two commands at the project's root directory:
-    npm install
-and
-    bower install
+After installing them, please run the following two commands at the project's root directory: `npm install` and `bower install`
 
 ## Running the application
 
-Just issue the following command in a console at the project's root directory:
-    node server.js
-Open a web browser pointing to
-    http://localhost:3000/
+Just issue the following command in a console at the project's root directory: `node server.js`
+Open a web browser pointing to `http://localhost:3000/`
 
 
 ## Persistence
 Instead of requiring the installation of a MongoDB instance, I choose to use [mongolab](http://mongolab.com/), a MongoDB-as-a-service.
 
 To connect to the MongoDB instance using the shell you can run
+```
     mongo ds033469.mongolab.com:33469/project-gaston-elhordoy -u <dbuser> -p <dbpassword>
+```
 where <dbuser> and <dbpassword> should be replaced by appropiate values:
+```
     mongo ds033469.mongolab.com:33469/project-gaston-elhordoy -u project-gaston-elhordoy -p project-gaston-elhordoy-1234
+```
 
 
 ## Further improvements
