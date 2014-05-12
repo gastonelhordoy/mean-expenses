@@ -1,0 +1,47 @@
+<div ng-include="'partials/navbar'"></div>
+<alert ng-repeat="alert in appAlerts" type="alert.type" close="closeAlert($index)">{{displayAlert($index)}}</alert>
+
+<div class="row">
+    <div class="col-sm-12">
+        <h1>{{expenseFormTitle}}</h1>
+    </div>
+    <form name="expenseForm" novalidate ng-submit="saveExpense()">
+        <div class="form-group col-sm-12" ng-class="{'has-error': expenseForm.description.$invalid && expenseForm.description.$dirty}">
+            <label for="expenseForm_description" class="control-label">Description</label>
+            <input type="text" id="expenseForm_description" name="description" class="form-control" placeholder="Description" ng-required="true" ng-model="expenseToEdit.description" autofocus="" maxlength="50"/>
+            <span class="help-block" ng-show="expenseForm.description.$error.required && expenseForm.description.$dirty">Required</span>
+        </div>
+        <div class="form-group col-sm-5" ng-class="{'has-error': expenseForm.date.$invalid && expenseForm.date.$dirty}">
+            <label for="expenseForm_date" class="control-label">Date</label>
+            <input type="text" id="expenseForm_date" name="date" class="form-control" ng-required="true" ng-model="expenseToEdit.timestamp" data-autoclose="true" data-max-date="today" placeholder="Date" bs-datepicker>
+            <span class="help-block" ng-show="expenseForm.date.$error.required && expenseForm.date.$dirty">Required</span>
+            <span class="help-block" ng-show="expenseForm.date.$error.date && expenseForm.date.$dirty">Invalid date</span>
+        </div>
+        <div class="form-group col-sm-4" ng-class="{'has-error': expenseForm.time.$invalid && expenseForm.time.$dirty}">
+            <label for="expenseForm_time" class="control-label">Time</label>
+            <input type="text" id="expenseForm_time" name="time" class="form-control" ng-required="true" ng-model="expenseToEdit.timestamp" placeholder="Time" bs-timepicker>
+            <span class="help-block" ng-show="expenseForm.time.$error.required && expenseForm.time.$dirty">Required</span>
+            <span class="help-block" ng-show="expenseForm.time.$error.date && expenseForm.time.$dirty">Invalid time</span>
+        </div>
+        <div class="form-group col-sm-3" ng-class="{'has-error': expenseForm.amount.$invalid && expenseForm.amount.$dirty}">
+            <label for="expenseForm_amount" class="control-label">Amount</label>
+            <input type="number" id="expenseForm_amount" name="amount" class="form-control" placeholder="0.00" step="any" required min="0" ng-maxlength="25" ng-model="expenseToEdit.amount"/>
+            <span class="help-block" ng-show="expenseForm.amount.$error.required && expenseForm.amount.$dirty">Required</span>
+            <span class="help-block" ng-show="expenseForm.amount.$error.min && expenseForm.amount.$dirty">Cannot be negative</span>
+            <span class="help-block" ng-show="expenseForm.amount.$error.maxlength && expenseForm.amount.$dirty">Too big</span>
+        </div>
+        <div class="form-group col-sm-12">
+            <label for="expenseForm_comment" class="control-label">Comment</label>
+            <textarea id="expenseForm_comment" name="comment" class="form-control" style="resize:vertical" placeholder="Comment" ng-model="expenseToEdit.comment" maxlength="1000"/>
+        </div>
+        <div class="form-group col-sm-12">
+            <button type="submit" class="btn btn-lg btn-primary" ng-disabled="isClean() || expenseForm.$invalid">Save</button>
+            <a class="btn btn-lg btn-default" ng-href="#/">Cancel</a>
+            <a class="btn btn-lg btn-danger pull-right" ng-show="isEditing()" ng-click="deleteExpense()">Delete</a>
+        </div>
+    </form>
+</div>
+
+<div class="footer">
+  <p>Built by Gaston Elhordoy</p>
+</div>

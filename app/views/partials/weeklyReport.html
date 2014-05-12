@@ -1,0 +1,40 @@
+<div class="row">
+    <div class="col-sm-12">
+        <span><strong>Username: </strong>{{currentUser.name}}</span>
+        <span class="pull-right"><strong>Generated on: </strong>{{printedOn | date:"yyyy/MM/dd HH:mm"}}</span>
+    </div>
+    <hr>
+
+    <div loading-container="tableParams.settings().$loading">
+        <table ng-table="tableParams" class="table table-condensed">
+            <tbody ng-repeat="group in $groups">
+                <tr class="ng-table-group">
+                    <td>
+                        <strong>{{ group.value }}</strong>
+                    </td>
+                    <td>
+                        <strong>Average per day:<p class="pull-right">{{aggregatedData(group.value) / 7 | currency:"$"}}</p></strong>
+                    </td>
+                    <td>
+                        <strong>Total:<p class="pull-right">{{aggregatedData(group.value) | currency:"$"}}</p></strong>
+                    </td>
+                </tr>
+                <tr ng-repeat="expense in group.data">
+                    <td data-title="'Date/Time'">
+                        {{expense.timestamp | date:'yyyy/MM/dd HH:mm'}}
+                    </td>
+                    <td data-title="'Description'">
+                        {{expense.description}}
+                    </td>
+                    <td data-title="'Amount'">
+                        <p class="pull-right">{{expense.amount | currency:"$"}}</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="footer">
+  <p>Built by Gaston Elhordoy</p>
+</div>
